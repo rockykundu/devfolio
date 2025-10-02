@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Techfolio | Software Developer Portfolio</title>
+    <meta name="description" content="Professional portfolio of a skilled software developer showcasing projects, skills and experience">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #00f0ff;
+            --secondary: #ff2d75;
+            --dark: #142136;
+            --light: #ccd6f6;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+        }
+        
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+        
+        .hero-section {
+            height: 100vh;
+            background: 
+                radial-gradient(circle at 10% 30%, rgba(1, 255, 221, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 30%, rgba(255, 45, 117, 0.1) 0%, transparent 30%),
+                var(--dark);
+        }
+        
+        .tech-box {
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            background: rgba(0, 240, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .tech-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+        }
+        
+        .project-card:hover .project-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .glow {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px var(--primary), 0 0 20px var(--primary);
+            }
+            to {
+                text-shadow: 0 0 10px #fff, 0 0 15px var(--primary), 0 0 20px var(--primary), 0 0 25px var(--primary);
+            }
+        }
+        
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .dot-pattern {
+            background-image: radial-gradient(rgba(0, 240, 255, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="fixed w-full bg-opacity-80 backdrop-blur-md bg-[#0a192f] z-50 border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-white hover:text-primary transition-colors">
+                <span class="text-var(--primary) code-font glow">&lt;/devfolio&gt; </span>
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#about" class="text-gray-300 hover:text-primary transition-colors code-font text-sm">.about()</a>
+                <a href="#projects" class="text-gray-300 hover:text-primary transition-colors code-font text-sm">.projects()</a>
+                <a href="#experience" class="text-gray-300 hover:text-primary transition-colors code-font text-sm">.experience()</a>
+                <a href="#skills" class="text-gray-300 hover:text-primary transition-colors code-font text-sm">.skills()</a>
+                <a href="#contact" class="text-gray-300 hover:text-primary transition-colors code-font text-sm">.contact()</a>
+            </div>
+            <a href="#contact" class="hidden md:block px-6 py-2 border border-primary text-primary rounded-md hover:bg-primary hover:bg-opacity-10 transition-all code-font text-sm">
+                Resume
+            </a>
+            <button class="md:hidden text-gray-300 focus:outline-none" id="mobile-menu-button">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+            <!-- Mobile menu - hidden by default -->
+        <div id="mobile-menu" class="hidden md:hidden w-full bg-[#0a192f] border-t border-gray-800">
+            <div class="flex flex-col space-y-4 px-6 py-4">
+                <a href="#about" class="text-gray-300 hover:text-primary transition-colors code-font text-sm py-2">.about()</a>
+                <a href="#projects" class="text-gray-300 hover:text-primary transition-colors code-font text-sm py-2">.projects()</a>
+                <a href="#experience" class="text-gray-300 hover:text-primary transition-colors code-font text-sm py-2">.experience()</a>
+                <a href="#skills" class="text-gray-300 hover:text-primary transition-colors code-font text-sm py-2">.skills()</a>
+                <a href="#contact" class="text-gray-300 hover:text-primary transition-colors code-font text-sm py-2">.contact()</a>
+                <a href="#contact" class="mt-4 px-4 py-2 border border-primary text-primary rounded-md hover:bg-primary hover:bg-opacity-10 transition-all code-font text-sm w-full text-center focus:outline focus:outline-sky-500 ">
+                    Resume
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section pt-32 px-6 flex flex-col justify-center items-center text-center relative overflow-hidden">
+        <div class="absolute w-64 h-64 rounded-full bg-secondary opacity-10 -top-32 -right-32"></div>
+        <div class="absolute w-96 h-96 rounded-full bg-primary opacity-10 -bottom-64 -left-64"></div>
+        
+        <div class="max-w-3xl mx-auto relative z-10">
+            <p class="text-primary code-font mb-4">Hi, my name is</p>
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 ">Rocky Kundu.</h1>
+            <h2 class="text-3xl md:text-5xl font-bold text-gray-300 mb-6">I build things for the web.</h2>
+            <p class="text-gray-400 max-w-lg mx-auto mb-10">
+                I'm a full-stack developer specializing in building (and occasionally designing) exceptional digital experiences. Currently, I'm focused on building accessible, human-centered products at TechCorp.
+            </p>
+            <a href="#about" class="px-8 py-3 border border-primary text-primary rounded-md hover:bg-primary hover:bg-opacity-10 transition-all code-font">
+                Know More About Me
+            </a>
+        </div>
+        
+        <div class="mt-24 absolute bottom-10 animate-bounce">
+            <i class="fas fa-chevron-down text-gray-400 text-xl"></i>
+        </div>
+        
+        <div class="w-16 h-16 rounded-full bg-primary bg-opacity-20 absolute top-1/3 right-1/4"></div>
+        <div class="w-10 h-10 rounded-full bg-secondary bg-opacity-20 absolute top-2/3 left-1/4"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-6 dot-pattern">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-16 code-font flex items-center">
+                <span class="text-primary mr-4">01.</span>
+                About Me
+                <span class="h-px bg-gray-700 flex-1 ml-4 mt-2"></span>
+            </h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                <div class="lg:col-span-1 flex flex-col items-center lg:items-start">
+                    <div class="w-64 h-64 rounded overflow-hidden relative group">
+                        <img 
+                            src="src/images/rock1.jpg"
+                            alt="Professional headshot of a software developer in business casual attire with a modern office background and subtle code overlay" 
+                            class="w-full h-full object-cover group-hover:opacity-70 transition-opacity"
+                        />
+                        <div class="absolute inset-0 border-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity m-2"></div>
+                    </div>
+                </div>
+                <div class="lg:col-span-2">
+                    <p class="text-gray-300 mb-6">
+                        Hello! I'm Rocky, a passionate software developer based in Kolkata, India. I specialize in building exceptional digital experiences for the web. My journey in tech began when I built my first website at 18, and I've been coding ever since.
+                    </p>
+                    <p class="text-gray-300 mb-6">
+                        I have a strong foundation in computer science principles and a passion for problem-solving. My current focus is on building accessible, performant web applications using modern technologies like React, Node.js, and TypeScript.
+                    </p>
+                    <p class="text-gray-300 mb-8">
+                        When I'm not coding, you can find me hiking in the mountains, reading sci-fi novels, or playing guitar. I'm always excited to collaborate on interesting projects, so feel free to reach out!
+                    </p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-angle-right text-primary mr-2"></i>
+                            <span class="text-gray-300">Full-Stack Development</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-angle-right text-primary mr-2"></i>
+                            <span class="text-gray-300">Frontend Architecture</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-angle-right text-primary mr-2"></i>
+                            <span class="text-gray-300">UI/UX Design</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-angle-right text-primary mr-2"></i>
+                            <span class="text-gray-300">Technical Writing</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-angle-right text-primary mr-2"></i>
+                            <span class="text-gray-300">DevOps & CI/CD</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-angle-right text-primary mr-2"></i>
+                            <span class="text-gray-300">Mentorship</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-16 code-font flex items-center">
+                <span class="text-primary mr-4">02.</span>
+                My Projects
+                <span class="h-px bg-gray-700 flex-1 ml-4 mt-2"></span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="tech-box rounded-lg overflow-hidden relative group h-64">
+                    <img 
+                     
+                        src="src/images/p1.png" 
+                        alt="Dashboard interface of a project management tool with analytics charts, task lists and team management features" 
+                        class="w-full h-full object-cover"
+                    />
+                    <div class="project-overlay absolute inset-0 bg-black bg-opacity-80 opacity-0 flex flex-col justify-center p-6 transition-all duration-300 transform translate-y-4">
+                        <h3 class="text-white text-xl font-bold mb-2">MeloDoodle</h3>
+                        <p class="text-gray-300 text-sm mb-4">A modern project management tool with built-in analytics and team collaboration features.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs code-font px-2 py-1 bg-primary bg-opacity-20 text-primary rounded">React</span>
+                            <span class="text-xs code-font px-2 py-1 bg-primary bg-opacity-20 text-primary rounded">Node.js</span>
+                            <span class="text-xs code-font px-2 py-1 bg-primary bg-opacity-20 text-primary rounded">MongoDB</span>
+                        </div>
+                        <div class="flex space-x-4 mt-auto">
+                            <a href="#" class="text-gray-300 hover:text-primary">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="text-gray-300 hover:text-primary">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="tech-box rounded-lg overflow-hidden relative group h-64">
+                    <img 
+                        src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/74b75390-2d35-4deb-a25f-d8e9c5bb44b6.png" 
+                        alt="E-commerce platform interface showing product listings with filters, shopping cart and user profile section"
+                        class="w-full h-full object-cover"
+                    />
+                    <div class="project-overlay absolute inset-0 bg-black bg-opacity-80 opacity-0 flex flex-col justify-center p-6 transition-all duration-300 transform translate-y-4">
+                        <h3 class="text-white text-xl font-bold mb-2">NexusMart</h3>
+                        <p class="text-gray-300 text-sm mb-4">E-commerce platform with personalized recommendations and seamless checkout.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs code-font px-2 py-1 bg-primary bg-opacity-20 text-primary rounded">Next.js</span>
+                            <span class="text-xs code-font px-2 py-1 bg-primary bg-opacity-20 text-primary rounded">GraphQL</span>
+                            <span class="text-xs code-font px-2 py-1 bg-primary bg-opacity-20 text-primary rounded">Stripe</span>
+                        </div>
+                        <div class="flex space-x-4 mt-auto">
+                            <a href="#" class="text-gray-300 hover:text-primary">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="text-gray-300 hover:text-primary">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="tech-box rounded-lg overflow-hidden relative group h-64">
+                    <img 
+                        src="src/images/p2.png"
+                        alt="Mobile app interface showing health metrics dashboard with charts for activity, sleep and nutrition tracking"
+                        class="w-full h-full object-cover"
+                    />
+                    <div class="project-overlay absolute inset-0 bg-black bg-opacity-80 opacity-0 flex flex-col justify-center p-6 transition-all duration-300 transform translate-y-4">
+                        <h3 class="text-white text-xl font-bold mb-2">Student Connect</h3>
+                        <p class="text-gray-300 text-sm mb-4">Digital content management platforms that will help students.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs code-font px-2 py-1 bg-primary bg-opacity-20 text-primary rounded">React Native</span>
+                            <span class="text-xs code-font px-2 py-1 bg-primary bg-opacity-20 text-primary rounded">Firebase</span>
+                            <span class="text-xs code-font px-2 py-1 bg-primary bg-opacity-20 text-primary rounded">Python</span>
+                        </div>
+                        <div class="flex space-x-4 mt-auto">
+                            <a href="#" class="text-gray-300 hover:text-primary">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="text-gray-300 hover:text-primary">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="tech-box rounded-lg overflow-hidden relative group h-64">
+                    <img  
+                        src="src/images/p3.png"
+                        alt="Code editor interface with syntax highlighting showing real-time collaboration features for developers"
+                        class="w-full h-full object-cover"
+                    />
+                    <div class="project-overlay absolute inset-0 bg-black bg-opacity-80 opacity-0 flex flex-col justify-center p-6 transition-all duration-300 transform translate-y-4">
+                        <h3 class="text-white text-xl font-bold mb-2">CodeConverter</h3>
+                        <p class="text-gray-300 text-sm mb-4">Real-time code converter with maximum language support.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs code-font px-2 py-1 bg-primary bg-opacity-20 text-primary rounded">Angular</span>
+                            <span class="text-xs code-font px-2 py-1 bg-primary bg-opacity-20 text-primary rounded">APIs</span>
+                            <span class="text-xs code-font px-2 py-1 bg-primary bg-opacity-20 text-primary rounded">MongoDB</span>
+                        </div>
+                        <div class="flex space-x-4 mt-auto">
+                            <a href="#" class="text-gray-300 hover:text-primary">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="text-gray-300 hover:text-primary">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 5 -->
+                <div class="tech-box rounded-lg overflow-hidden relative group h-64">
+                    <img 
+                        src="src/images/p4.png" 
+                        alt="Data visualization dashboard showing interactive charts and graphs with filtering options and data export features"
+                        class="w-full h-full object-cover"
+                    />
+                    <div class="project-overlay absolute inset-0 bg-black bg-opacity-80 opacity-0 flex flex-col justify-center p-6 transition-all duration-300 transform translate-y-4">
+                        <h3 class="text-white text-xl font-bold mb-2">VMH groups Analysis</h3>
+                        <p class="text-gray-300 text-sm mb-4">Advanced data visualization platform with interactive dashboards and real-time updates.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs code-font px-2 py-1 bg-primary bg-opacity-20 text-primary rounded">D3.js</span>
+                            <span class="text-xs code-font px-2 py-1 bg-primary bg-opacity-20 text-primary rounded">Python</span>
+                            <span class="text-xs code-font px-2 py-1 bg-primary bg-opacity-20 text-primary rounded">Pandas</span>
+                        </div>
+                        <div class="flex space-x-4 mt-auto">
+                            <a href="#" class="text-gray-300 hover:text-primary">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="text-gray-300 hover:text-primary">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 6 -->
+                <div class="tech-box rounded-lg overflow-hidden relative group h-64">
+                    <img 
+                        src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ca5079c0-3a0f-433e-8cd9-a55e8cca77c4.png" 
+                        alt="Machine learning model training interface showing accuracy metrics, confusion matrix and feature importance visualization"
+                        class="w-full h-full object-cover"
+                    />
+                    <div class="project-overlay absolute inset-0 bg-black bg-opacity-80 opacity-0 flex flex-col justify-center p-6 transition-all duration-300 transform translate-y-4">
+                        <h3 class="text-white text-xl font-bold mb-2">ML Studio</h3>
+                        <p class="text-gray-300 text-sm mb-4">Web-based interface for training, evaluating and deploying machine learning models.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs code-font px-2 py-1 bg-primary bg-opacity-20 text-primary rounded">TensorFlow.js</span>
+                            <span class="text-xs code-font px-2 py-1 bg-primary bg-opacity-20 text-primary rounded">Flask</span>
+                            <span class="text-xs code-font px-2 py-1 bg-primary bg-opacity-20 text-primary rounded">PyTorch</span>
+                        </div>
+                        <div class="flex space-x-4 mt-auto">
+                            <a href="#" class="text-gray-300 hover:text-primary">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="text-gray-300 hover:text-primary">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-16">
+                <a href="#" class="inline-block px-8 py-3 border border-primary text-primary rounded-md hover:bg-primary hover:bg-opacity-10 transition-all code-font">
+                    View All Projects
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 px-6 dot-pattern">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-16 code-font flex items-center">
+                <span class="text-primary mr-4">03.</span>
+                Experience
+                <span class="h-px bg-gray-700 flex-1 ml-4 mt-2"></span>
+            </h2>
+            
+            <div class="flex flex-col md:flex-row">
+                <div class="w-full md:w-32 mb-8 md:mb-0 md:mr-8">
+                    <div class="md:sticky md:top-32">
+                        <div class="flex flex-row space-x-6 overflow-x-auto pb-2 md:flex-col md:space-x-0 md:space-y-4 md:border-l-2 md:border-gray-700 md:pl-6">
+                            <!-- <button class="experience-tab active text-left text-primary" data-tab="jobs">Jobs</button> -->
+                           <button class=" experience-tab whitespace-nowrap text-left text-gray-400 hover:text-gray-300 transition-colors" data-tab="internships">Internships</button>
+                            <button class="experience-tab whitespace-nowrap text-left text-gray-400 hover:text-gray-300 transition-colors" data-tab="education">Education</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex-1">
+                    <!-- Jobs -->
+                    <!-- <div id="jobs-content" class="experience-content active">
+                        <div class="mb-12">
+                            <h3 class="text-xl font-bold text-white flex items-center">
+                                <span class="w-3 h-3 rounded-full bg-primary mr-4"></span>
+                                Senior Software Engineer @ TechCorp
+                            </h3>
+                            <div class="text-gray-400 code-font text-sm mb-2">Jun 2022 - Present | San Francisco, CA</div>
+                            <p class="text-gray-300 ml-7">
+                                Lead development of customer-facing web applications and internal tools. Collaborate with product managers and designers to implement new features. Mentor junior engineers and conduct code reviews.
+                                
+                                <div class="ml-7 mt-2 grid grid-cols-1 md:grid-cols-2 gap-2">
+                                    <span class="text-xs code-font px-2 py-1 bg-primary bg-opacity-10 text-primary rounded inline-block">React</span>
+                                    <span class="text-xs code-font px-2 py-1 bg-primary bg-opacity-10 text-primary rounded inline-block">Node.js</span>
+                                    <span class="text-xs code-font px-2 py-1 bg-primary bg-opacity-10 text-primary rounded inline-block">AWS</span>
+                                    <span class="text-xs code-font px-2 py-1 bg-primary bg-opacity-10 text-primary rounded inline-block">TypeScript</span>
+                                </div>
+                            </p>
+                        </div>
+                        
+                        <div class="mb-12">
+                            <h3 class="text-xl font-bold text-white flex items-center">
+                                <span class="w-3 h-3 rounded-full bg-primary mr-4"></span>
+                                Software Engineer @ DevSolutions
+                            </h3>
+                            <div class="text-gray-400 code-font text-sm mb-2">Jan 2019 - May 2022 | New York, NY</div>
+                            <p class="text-gray-300 ml-7">
+                                Developed and maintained several full-stack applications for enterprise clients. Optimized application performance leading to 30% faster load times. Implemented CI/CD pipelines for automated testing and deployment.
+                                
+                                <div class="ml-7 mt-2 grid grid-cols-1 md:grid-cols-2 gap-2">
+                                    <span class="text-xs code-font px-2 py-1 bg-primary bg-opacity-10 text-primary rounded inline-block">Angular</span>
+                                    <span class="text-xs code-font px-2 py-1 bg-primary bg-opacity-10 text-primary rounded inline-block">Java</span>
+                                    <span class="text-xs code-font px-2 py-1 bg-primary bg-opacity-10 text-primary rounded inline-block">PostgreSQL</span>
+                                    <span class="text-xs code-font px-2 py-1 bg-primary bg-opacity-10 text-primary rounded inline-block">Docker</span>
+                                </div>
+                            </p>
+                        </div>
+                    </div> -->
+                    
+                    <!-- Internships -->
+                    <div id="internships-content" class="experience-content active">
+                        <div class="mb-12">
+                            <h3 class="text-xl font-bold text-white flex items-center">
+                                <span class="w-3 h-3 rounded-full bg-primary mr-4"></span>
+                                AI/ML developer Intern @ Edunet Foundation||Microsoft
+                            </h3>
+                            <div class="text-gray-400 code-font text-sm mb-2"> 2025 | Remote</div>
+                            <p class="text-gray-300 ml-7">
+                                Built internal dashboard for monitoring server health and usage metrics. Implemented REST APIs for new features. Participated in agile development process including daily standups and sprint planning.
+                                
+                                <div class="ml-7 mt-2 grid grid-cols-1 md:grid-cols-2 gap-2">
+                                    <span class="text-xs code-font px-2 py-1 bg-primary bg-opacity-10 text-primary rounded inline-block">Python</span>
+                                    <span class="text-xs code-font px-2 py-1 bg-primary bg-opacity-10 text-primary rounded inline-block">DeepLearning</span>
+                                    <span class="text-xs code-font px-2 py-1 bg-primary bg-opacity-10 text-primary rounded inline-block">Machine learning</span>
+                                    <span class="text-xs code-font px-2 py-1 bg-primary bg-opacity-10 text-primary rounded inline-block">Azure</span>
+                                </div>
+                            </p>
+                        </div>
+
+                        <div class="mb-12">
+                            <h3 class="text-xl font-bold text-white flex items-center">
+                                <span class="w-3 h-3 rounded-full bg-primary mr-4"></span>
+                                BlockChain developer Intern @ Edunet Foundation || VIOS (Vodafone Idea Foundation)
+                            </h3>
+                            <div class="text-gray-400 code-font text-sm mb-2"> 2024 | Remote</div>
+                            <p class="text-gray-300 ml-7">
+                                Built internal dashboard for monitoring server health and usage metrics. Implemented REST APIs for new features. Participated in agile development process including daily standups and sprint planning.
+                                
+                                <div class="ml-7 mt-2 grid grid-cols-1 md:grid-cols-2 gap-2">
+                                    <span class="text-xs code-font px-2 py-1 bg-primary bg-opacity-10 text-primary rounded inline-block">Solidity</span>
+                                    <span class="text-xs code-font px-2 py-1 bg-primary bg-opacity-10 text-primary rounded inline-block">Web3 technogies</span>
+                                    <span class="text-xs code-font px-2 py-1 bg-primary bg-opacity-10 text-primary rounded inline-block"></span>
+                                    <span class="text-xs code-font px-2 py-1 bg-primary bg-opacity-10 text-primary rounded inline-block"></span>
+                                </div>
+                            </p>
+                        </div>
+                        
+                        <div class="mb-12">
+                            <h3 class="text-xl font-bold text-white flex items-center">
+                                <span class="w-3 h-3 rounded-full bg-primary mr-4"></span>
+                                Web Development Intern @ Artage
+                            </h3>
+                            <div class="text-gray-400 code-font text-sm mb-2"> 2023 | On-Site | Kolkata</div>
+                            <p class="text-gray-300 ml-7">
+                                Developed and deployed client websites using WordPress and custom themes. Created interactive UI components with JavaScript. Assisted with QA testing and bug fixes.
+                                
+                                <div class="ml-7 mt-2 grid grid-cols-1 md:grid-cols-2 gap-2">
+                                    <span class="text-xs code-font px-2 py-1 bg-primary bg-opacity-10 text-primary rounded inline-block">MERN</span>
+                                    <span class="text-xs code-font px-2 py-1 bg-primary bg-opacity-10 text-primary rounded inline-block">PHP</span>
+                                    <span class="text-xs code-font px-2 py-1 bg-primary bg-opacity-10 text-primary rounded inline-block">JavaScript</span>
+                                    <span class="text-xs code-font px-2 py-1 bg-primary bg-opacity-10 text-primary rounded inline-block">jQuery</span>
+                                </div>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Education -->
+                    <div id="education-content" class="experience-content hidden">
+                        
+                        <div class="mb-12">
+                            <h3 class="text-xl font-bold text-white flex items-center">
+                                <span class="w-3 h-3 rounded-full bg-primary mr-4"></span>
+                                Bachelor of Technology in Computer Scince & Engineering
+                            </h3>
+                            <div class="text-gray-400 code-font text-sm mb-2"> JIS University | 2023 - 2027</div>
+                            <p class="text-gray-300 ml-7">
+                                Minor in Mathematics. Graduated with honors. President of Computer Science Club. Research assistant in the Human-Computer Interaction lab.
+                            </p>
+                        </div>
+
+                          <div class="mb-12">
+                            <h3 class="text-xl font-bold text-white flex items-center">
+                                <span class="w-3 h-3 rounded-full bg-primary mr-4"></span>
+                                Diploma in Computer Science & Technology
+                            </h3>
+                            <div class="text-gray-400 code-font text-sm mb-2"> Sir Rajendra Nath Mukherjee Govt. Poytechnic | 2021 - 2023</div>
+                            <p class="text-gray-300 ml-7">
+                                Minor in Mathematics. Graduated with honors. President of Computer Science Club. Research assistant in the Human-Computer Interaction lab.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-16 code-font flex items-center">
+                <span class="text-primary mr-4">04.</span>
+                Skills & Technologies
+                <span class="h-px bg-gray-700 flex-1 ml-4 mt-2"></span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="tech-box p-8 rounded-lg">
+                    <h3 class="text-xl font-bold text-white mb-6 flex items-center">
+                        <i class="fas fa-laptop-code text-primary mr-3"></i>
+                        Frontend
+                    </h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span class="text-gray-300">React</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span class="text-gray-300">Angular</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span class="text-gray-300">Vue.js</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span class="text-gray-300">TypeScript</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span class="text-gray-300">Redux</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span class="text-gray-300">Next.js</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span class="text-gray-300">GraphQL</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span class="text-gray-300">Tailwind CSS</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tech-box p-8 rounded-lg">
+                    <h3 class="text-xl font-bold text-white mb-6 flex items-center">
+                        <i class="fas fa-server text-primary mr-3"></i>
+                        Backend
+                    </h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span class="text-gray-300">Node.js</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span class="text-gray-300">Python</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span class="text-gray-300">Java</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span class="text-gray-300">Express</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span class="text-gray-300">Django</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span class="text-gray-300">Spring Boot</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span class="text-gray-300">Flask</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span class="text-gray-300">PHP</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tech-box p-8 rounded-lg">
+                    <h3 class="text-xl font-bold text-white mb-6 flex items-center">
+                        <i class="fas fa-database text-primary mr-3"></i>
+                        Other
+                    </h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span class="text-gray-300">MongoDB</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span class="text-gray-300">PostgreSQL</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span class="text-gray-300">Docker</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span class="text-gray-300">Kubernetes</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span class="text-gray-300">AWS</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span class="text-gray-300">Azure</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span class="text-gray-300">Git</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check text-primary mr-3"></i>
+                            <span class="text-gray-300">CI/CD</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6 dot-pattern">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-16 code-font flex items-center">
+                <span class="text-primary mr-4">05.</span>
+                Get In Touch
+                <span class="h-px bg-gray-700 flex-1 ml-4 mt-2"></span>
+            </h2>
+            
+            <div class="max-w-2xl mx-auto">
+                <p class="text-gray-300 text-center mb-12">
+                    I'm currently looking for new opportunities. Whether you have a question or just want to say hi, I'll get back to you as soon as possible!
+                </p>
+                
+                <form id="contactForm" class="space-y-6" action="/send-email" method="POST">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-gray-300 code-font text-sm mb-2">Name</label>
+                            <input type="text" id="name" name="name" required class="w-full bg-gray-800 border border-gray-700 rounded-md px-4 py-3 text-gray-300 focus:outline-none focus:border-primary transition-colors" placeholder="Your Name">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-300 code-font text-sm mb-2">Email</label>
+                            <input type="email" id="email" name="email" required class="w-full bg-gray-800 border border-gray-700 rounded-md px-4 py-3 text-gray-300 focus:outline-none focus:border-primary transition-colors" placeholder="your@email.com">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="subject" class="block text-gray-300 code-font text-sm mb-2">Subject</label>
+                        <input type="text" id="subject" name="subject" required class="w-full bg-gray-800 border border-gray-700 rounded-md px-4 py-3 text-gray-300 focus:outline-none focus:border-primary transition-colors" placeholder="Subject">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-gray-300 code-font text-sm mb-2">Message</label>
+                        <textarea id="message" rows="5" name="message" required class="w-full bg-gray-800 border border-gray-700 rounded-md px-4 py-3 text-gray-300 focus:outline-none focus:border-primary transition-colors" placeholder="Your message here..."></textarea>
+                    </div>
+                    <div class="text-center pt-4">
+                        <button type="submit" class="px-8 py-3 bg-primary text-dark font-bold rounded-md border border-primary hover:bg-opacity-90 transition-all code-font focus:outline focus:outline-sky-500 ">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+                
+                <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <a href="https://github.com/rockykundu" class="text-gray-300 hover:text-primary transition-colors">
+                        <i class="fab fa-github text-2xl mb-2"></i>
+                        <p class="code-font text-xs">GitHub</p>
+                    </a>
+                    <a href="https://www.linkedin.com/in/rocky-dev/" class="text-gray-300 hover:text-primary transition-colors">
+                        <i class="fab fa-linkedin-in text-2xl mb-2"></i>
+                        <p class="code-font text-xs">LinkedIn</p>
+                    </a>
+                    <a href="https://x.com/rockykundu722" class="text-gray-300 hover:text-primary transition-colors">
+                        <i class="fab fa-twitter text-2xl mb-2"></i>
+                        <p class="code-font text-xs">Twitter</p>
+                    </a>
+                    <a href="/resume.pdf" download="Rocky_kundu_Resume.pdf" class="text-gray-300 hover:text-primary transition-colors">
+                        <div class="flex flex-col items-center ">
+                            <i class="fas fa-file text-2xl mb-2"></i>
+                            <p class="code-font text-xs ">Download Resume</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 text-center text-gray-500 code-font text-xs">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-4">
+                Designed & Built by <span class="text-primary">Rocky</span>
+            </div>
+            <div>
+                © <span id="year"></span> All Rights Reserved
+            </div>
+        </div>
+    </footer>
+
+    <script>
+
+
+    // Add server-side implementation note before the closing body tag
+     
+    // Backend Implementation Notes (Node.js example):
+    
+    // // Required packages:
+    // // npm install express nodemailer express-formidable
+    
+    // // Sample email sending route:
+    // const express = require('express');
+    // const router = express.Router();
+    // const nodemailer = require('nodemailer');
+    
+    // // Configure transporter with your Gmail credentials
+    // const transporter = nodemailer.createTransport({
+    //   service: 'gmail',
+    //   auth: {
+    //     user: 'your-email@gmail.com',
+    //     pass: 'your-email-password-or-app-password'
+    //   }
+    // });
+    // router.post('/send-email', (req, res) => {
+    //   const { name, email, subject, message } = req.body;
+      
+    //   const mailOptions = {
+    //     from: 'your-email@gmail.com',
+    //     to: 'your-email@gmail.com',
+    //     subject: `New Contact Form Submission: ${subject}`,
+    //     html: `
+    //       <h2>New Contact Form Submission</h2>
+    //       <p><strong>Name:</strong> ${name}</p>
+    //       <p><strong>Email:</strong> ${email}</p>
+    //       <p><strong>Subject:</strong> ${subject}</p>
+    //       <p><strong>Message:</strong></p>
+    //       <p>${message}</p>
+    //     `
+    //   };
+    //     transporter.sendMail(mailOptions, (error, info) => {
+    //     if (error) {
+    //       console.error('Error sending email:', error);
+    //       return res.status(500).json({ success: false });
+    //     }
+    //     console.log('Email sent:', info.response);
+    //     res.json({ success: true });
+    //   });
+    // });
+
+
+        // Mobile menu functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('#mobile-menu a');
+        
+        // Toggle menu on button click
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenuButton.querySelector('i').classList.toggle('fa-bars');
+            mobileMenuButton.querySelector('i').classList.toggle('fa-times');
+        });
+        
+        // Close menu when a link is clicked
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuButton.querySelector('i').classList.remove('fa-times');
+                mobileMenuButton.querySelector('i').classList.add('fa-bars');
+            });
+        });
+    
+        //this function to handle resume download tracking
+        document.querySelector('a[download]').addEventListener('click', function() {
+        fetch('/track-download', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ downloadedAt: new Date().toISOString() })
+        }).catch(e => console.log('Download tracking failed', e));
+        });
+       
+       // Experience tabs functionality
+        document.querySelectorAll('.experience-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                document.querySelectorAll('.experience-tab').forEach(t => t.classList.remove('active', 'text-primary'));
+                document.querySelectorAll('.experience-tab').forEach(t => t.classList.add('text-gray-400'));
+                document.querySelectorAll('.experience-content').forEach(c => c.classList.add('hidden'));
+                
+                // Add active class to clicked tab and show corresponding content
+                tab.classList.add('active', 'text-primary');
+                tab.classList.remove('text-gray-400');
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(`${tabId}-content`).classList.remove('hidden');
+            });
+        });
+        
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuButton.querySelector('i').classList.remove('fa-times');
+                    mobileMenuButton.querySelector('i').classList.add('fa-bars');
+                }
+            });
+        });
+        
+        //  form submission
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            
+            fetch('/send-email', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.json();
+            })
+            .then(data => {
+                alert('Thank you for your message! I will get back to you soon.');
+                e.target.reset();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was a problem sending your message. Please try again.');
+            });
+        });
+        
+        // Project cards hover effect with vanilla JS
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.querySelector('.project-overlay').classList.remove('opacity-0', 'translate-y-4');
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.querySelector('.project-overlay').classList.add('opacity-0', 'translate-y-4');
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+<!-- Node.js er file korte hobe then eta bosate hobe okhane for uploading my resume  
+<<<<<<< SEARCH
+        // Simple form submission
+=======
+        // For server-side implementation (Node.js example):
+        /*
+        const express = require('express');
+        const path = require('path');
+        const app = express();
+
+        // Serve static files
+        app.use(express.static('public'));
+
+        // Handle resume download tracking
+        app.post('/track-download', express.json(), (req, res) => {
+          console.log('Resume downloaded at:', req.body.downloadedAt);
+          res.sendStatus(200);
+        });
+
+        // API endpoint to upload resume (admin only)
+        app.post('/upload-resume', express.raw({type: 'application/pdf', limit: '5mb'}), (req, res) => {
+          require('fs').writeFileSync('public/resume.pdf', req.body);
+          res.sendStatus(200);
+        });
+
+        app.listen(3000);
+        */
+>>>>>>> REPLACE -->
